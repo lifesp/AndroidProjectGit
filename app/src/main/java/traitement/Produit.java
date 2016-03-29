@@ -4,6 +4,7 @@ public class Produit {
     String nom;
     Integer quantiter;
     String type;
+    String jeremy;
 
     public Produit(String nom, Integer quantiter, String type){
         this.nom = nom;
