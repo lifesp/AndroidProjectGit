@@ -1,14 +1,14 @@
 package traitement;
 
-/**
- * Created by mael on 29/03/2016.
- */
 public class Produit {
     String nom;
     Integer quantiter;
-    public Produit(String nom, Integer quantiter){
+    String type;
+
+    public Produit(String nom, Integer quantiter, String type){
         this.nom = nom;
         this.quantiter = quantiter;
+        this.type = type;
     }
 
     @Override
@@ -22,5 +22,9 @@ public class Produit {
 
     public Integer getQuantiter() {
         return quantiter;
+    }
+
+    public String getType() {
+        return type;
     }
 }
