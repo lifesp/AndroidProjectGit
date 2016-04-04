@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.mael.androidproject2.formulaire.FormFragment;
 import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
 import com.example.mael.androidproject2.liste.ItemListeFrigo;
 import com.example.mael.androidproject2.reseau.ItemReseau;
@@ -15,7 +16,7 @@ import com.example.mael.androidproject2.reseau.ItemReseau;
 import traitement.Produit;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
-    Fragment [] Frags = new Fragment[3] ;
+    Fragment [] Frags = new Fragment[4] ;
     BalladesFragsPagerAdapter balladesFragsPagerAdapter;
     ViewPager mViewPager;
     public static Context CONTEXT;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         Frags[0] = ItemReseau.newInstance(1);
         Frags[1] = ItemListeFrigo.newInstance(1);
         Frags[2] = ItemListeFrigo.newInstance(1);
+        Frags[3] = FormFragment.newInstance("form", "form");
         CONTEXT = getBaseContext();
         balladesFragsPagerAdapter = new BalladesFragsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
