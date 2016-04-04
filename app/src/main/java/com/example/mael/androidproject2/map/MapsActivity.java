@@ -31,7 +31,7 @@ public class MapsActivity extends Fragment {
         if (container == null) {
             return null;
         }
-        view = (RelativeLayout) inflater.inflate(R.layout.activity_maps2, container, false);
+        view = inflater.inflate(R.layout.activity_maps2, container, false);
         // Passing harcoded values for latitude & longitude. Please change as per your need. This is just used to drop a Marker on the Map
         latitude = 26.78;
         longitude = 72.56;
@@ -41,11 +41,11 @@ public class MapsActivity extends Fragment {
         return view;
     }
     /***** Sets up the map if it is possible to do so *****/
-    public static void setUpMapIfNeeded() {
+    public void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) MainActivity.fragmentManager
+            mMap = ((SupportMapFragment) getChildFragmentManager()
                     .findFragmentById(R.id.map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null)
