@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.mael.androidproject2.OnFragmentInteractionListener;
@@ -15,7 +16,7 @@ import com.example.mael.androidproject2.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FormFragment.OnFragmentInteractionListener} interface
+ *  interface
  * to handle interaction events.
  * Use the {@link FormFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -54,6 +55,8 @@ public class FormFragment extends Fragment {
         return fragment;
     }
     private Spinner list;
+    private EditText nom;
+    private EditText quantiter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class FormFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        //this.list = (Spinner) findViewById();
+        this.list = (Spinner) getView().findViewById(R.id.list);
     }
 
     @Override
