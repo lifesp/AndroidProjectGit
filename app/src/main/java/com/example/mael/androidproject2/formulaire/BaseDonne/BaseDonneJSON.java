@@ -22,6 +22,7 @@ public class BaseDonneJSON extends SQLiteOpenHelper {
             + DATABASE_TABLE + "(" +
             COLUMN_ID + " integer primary key autoincrement, " +
             COLUMN_NAME + " text not null);";
+
     static private BaseDonneJSON instance = null;
     static public BaseDonneJSON getBaseDonne(Context context){
         if (instance == null){
