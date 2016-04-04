@@ -36,13 +36,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public static Context CONTEXT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Partie initialisation BD avec le json des aliments
-        addBDJsonAliment();
-        //AddBaseJSON BDJSON = AddBaseJSON.getInstance(CONTEXT);
-        //List<String> aliment = BDJSON.getProduit();
-        /*for (String s: aliment) {
-            System.out.println(s);
-        }*/
         super.onCreate(savedInstanceState);
         CONTEXT = getBaseContext();
         fragmentManager = getSupportFragmentManager();
@@ -54,6 +47,13 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         balladesFragsPagerAdapter = new BalladesFragsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(balladesFragsPagerAdapter);
+        addBDJsonAliment();
+        //Partie initialisation BD avec le json des aliments
+        AddBaseJSON BDJSON = AddBaseJSON.getInstance(CONTEXT);
+        List<String> aliment = BDJSON.getProduit();
+        for (String s: aliment) {
+            System.out.println(s);
+        }
     }
 
     @Override
