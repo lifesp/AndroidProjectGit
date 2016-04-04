@@ -1,3 +1,4 @@
+package com.example.mael.androidproject2.map;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -39,7 +40,6 @@ public class MapsActivity extends Fragment {
 
         return view;
     }
-
     /***** Sets up the map if it is possible to do so *****/
     public static void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.

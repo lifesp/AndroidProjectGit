@@ -11,7 +11,9 @@ import android.os.Bundle;
 import com.example.mael.androidproject2.formulaire.FormFragment;
 import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
 import com.example.mael.androidproject2.liste.ItemListeFrigo;
+import com.example.mael.androidproject2.map.MapsActivity;
 import com.example.mael.androidproject2.reseau.ItemReseau;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapsInitializer;
 
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         setContentView(R.layout.activity_main);
         Frags[0] = ItemReseau.newInstance(1);
         Frags[1] = ItemListeFrigo.newInstance(1);
-        Frags[2] = ItemListeFrigo.newInstance(1);
+        Frags[2] = new MapsActivity();
         //Frags[3] = FormFragment.newInstance("form", "form");
         balladesFragsPagerAdapter = new BalladesFragsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);

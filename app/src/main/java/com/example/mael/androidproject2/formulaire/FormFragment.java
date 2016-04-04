@@ -7,11 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.mael.androidproject2.MainActivity;
 import com.example.mael.androidproject2.OnFragmentInteractionListener;
 import com.example.mael.androidproject2.R;
+import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import traitement.Produit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +67,9 @@ public class FormFragment extends Fragment {
     private Spinner list;
     private EditText nom;
     private EditText quantiter;
+    private Button bouton;
+    private AddBase bs;
+    private String item;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +79,33 @@ public class FormFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         this.list = (Spinner) getView().findViewById(R.id.list);
+        this.nom = (EditText) getView().findViewById(R.id.nom);
+        this.quantiter = (EditText) getView().findViewById(R.id.quantiter);
+        this.bouton = (Button) getView().findViewById(R.id.button);
+        List<String> categories = new ArrayList<String>();
+        categories.add("Automobile");
+        categories.add("Business Services");
+        categories.add("Computers");
+        categories.add("Education");
+        categories.add("Personal");
+        categories.add("Travel");
+        this.item = "Automobile";
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.CONTEXT, android.R.layout.simple_spinner_item, categories);
+        bs = AddBase.getInstance(MainActivity.CONTEXT);
+        list.setAdapter(dataAdapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item = parent.getItemAtPosition(position).toString();
+            }
+        });
+        this.bouton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Produit p = new Produit(nom.getText().toString(), Integer.getInteger(quantiter.getText().toString()), item);
+                System.out.println(p.toString());
+            }
+        });
     }
 
     @Override
