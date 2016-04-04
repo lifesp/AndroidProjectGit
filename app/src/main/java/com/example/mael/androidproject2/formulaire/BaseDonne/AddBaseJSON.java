@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.mael.androidproject2.MainActivity;
+import com.example.mael.androidproject2.liste.BaseDonne.BaseDonne;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,15 +35,14 @@ public class AddBaseJSON {
         long id = db.insert(BaseDonneJSON.DATABASE_TABLE, null, contentValues);
 
     }
-    public List<Produit> getProduit(){
-        List<Produit> ps = new LinkedList<Produit>();
-        SQLiteDatabase db = BaseDonneJSON.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
-        String [] allColumns = {BaseDonneJSON.COLUMN_ID, 	BaseDonneJSON.COLUMN_NAME,} ;
-        Cursor cursor = db.query(BaseDonneJSON.DATABASE_TABLE, allColumns, null, null, null, null, null);
+    public List<String> getProduit(){
+        List<String> ps = new LinkedList<String>();
+        SQLiteDatabase db = BaseDonne.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
+        String [] allColumns = {BaseDonne.COLUMN_ID, 	BaseDonne.COLUMN_NAME} ;
+        Cursor cursor = db.query(BaseDonne.DATABASE_TABLE, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            System.out.println("id = " + cursor.getLong(0) + ", name = " + cursor.getString(1));
-            ps.add(new Produit(cursor.getString(1), cursor.getInt(2), "test"));
+            ps.add(cursor.getString(1));
             cursor.moveToNext();
         }
         return ps;
