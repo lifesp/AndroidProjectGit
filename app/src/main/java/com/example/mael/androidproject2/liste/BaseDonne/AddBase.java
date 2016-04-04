@@ -34,23 +34,19 @@ public class AddBase {
         db = BaseDonne.getBaseDonne(context).getWritableDatabase();
         contentValues = new ContentValues();
     }
-    public void addProduit(Produit produit) {
-        contentValues.put(BaseDonne.COLUMN_NAME, produit.getNom());
-        contentValues.put(BaseDonne.COLUMN_QUANTITER, produit.getQuantiter());
+    public void addProduit(String produit) {
+        contentValues.put(BaseDonne.COLUMN_NAME, produit);
         long id = db.insert(BaseDonne.DATABASE_TABLE, null, contentValues);
 
     }
-    public List<Produit> getProduit(){
-        List<Produit> ps = new LinkedList<Produit>();
+    public List<String> getProduit(){
+        List<String> ps = new LinkedList<String>();
         SQLiteDatabase db = BaseDonne.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
-        String [] allColumns = {BaseDonne.COLUMN_ID, 	BaseDonne.COLUMN_NAME,
-                BaseDonne.COLUMN_QUANTITER} ;
+        String [] allColumns = {BaseDonne.COLUMN_ID, 	BaseDonne.COLUMN_NAME} ;
         Cursor cursor = db.query(BaseDonne.DATABASE_TABLE, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            System.out.println("id = " + cursor.getLong(0) + ", name = " + cursor.getString(1) +
-                    ", quantiter= " + cursor.getInt(2));
-            ps.add(new Produit(cursor.getString(1), cursor.getInt(2), "test"));
+            ps.add(cursor.getString(1));
             cursor.moveToNext();
         }
         return ps;
