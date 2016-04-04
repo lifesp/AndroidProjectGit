@@ -10,10 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mael.androidproject2.MainActivity;
 import com.example.mael.androidproject2.MyItemRecyclerViewAdapter;
 import com.example.mael.androidproject2.OnFragmentInteractionListener;
 import com.example.mael.androidproject2.R;
+import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
 import com.example.mael.androidproject2.reseau.dummy.DummyContent;
+
+import traitement.Produit;
 
 /**
  * A fragment representing a list of Items.
@@ -49,7 +53,8 @@ public class ItemReseau extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        AddBase ad = AddBase.getInstance(MainActivity.CONTEXT);
+        ad.addProduit(new Produit("pizza", 5, "pizza"));
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }

@@ -8,8 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
 import com.example.mael.androidproject2.liste.ItemListeFrigo;
 import com.example.mael.androidproject2.reseau.ItemReseau;
+
+import traitement.Produit;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     Fragment [] Frags = new Fragment[3] ;

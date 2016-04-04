@@ -1,9 +1,15 @@
 package com.example.mael.androidproject2.liste.dummy;
 
+import com.example.mael.androidproject2.MainActivity;
+import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import traitement.Produit;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -27,8 +33,10 @@ public class DummyContent {
 
     static {
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+        AddBase ad = AddBase.getInstance(MainActivity.CONTEXT);
+        List<Produit> lp= ad.getProduit();
+        for (int i = 1; i < lp.size(); i++) {
+            addItem(createDummyItem(i,lp.get(i)));
         }
     }
 
@@ -37,8 +45,8 @@ public class DummyContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static DummyItem createDummyItem(Integer i, Produit produit) {
+        return new DummyItem(i.toString(), produit.toString(), produit.toString());
     }
 
     private static String makeDetails(int position) {

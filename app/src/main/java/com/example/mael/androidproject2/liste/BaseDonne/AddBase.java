@@ -12,6 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import traitement.Produit;
 
 /**
@@ -37,16 +40,19 @@ public class AddBase {
         long id = db.insert(BaseDonne.DATABASE_TABLE, null, contentValues);
 
     }
-    public Produit[] getProduit(){
+    public List<Produit> getProduit(){
+        List<Produit> ps = new LinkedList<Produit>();
         SQLiteDatabase db = BaseDonne.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
-        Cursor cursor = db.query(BaseDonne.DATABASE_TABLE,
-                allColumns, null, null, null, null, null);
+        String [] allColumns = {BaseDonne.COLUMN_ID, 	BaseDonne.COLUMN_NAME,
+                BaseDonne.COLUMN_QUANTITER} ;
+        Cursor cursor = db.query(BaseDonne.DATABASE_TABLE, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             System.out.println("id = " + cursor.getLong(0) + ", name = " + cursor.getString(1) +
-                    ", play= " + cursor.getString(2));
-            addItem(new DummyItem(cursor.getString(0), cursor.getString(1), cursor.getString(2)));
+                    ", quantiter= " + cursor.getInt(2));
+            ps.add(new Produit(cursor.getString(1), cursor.getInt(2), "test"));
             cursor.moveToNext();
         }
+        return ps;
     }
 }
