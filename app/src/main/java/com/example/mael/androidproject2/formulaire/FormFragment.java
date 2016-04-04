@@ -106,9 +106,7 @@ public class FormFragment extends Fragment {
         categories.add("Personal");
         categories.add("Travel");
         this.item = "Automobile";
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.CONTEXT, android.R.layout.simple_spinner_item, categories);
         bs = AddBase.getInstance(MainActivity.CONTEXT);
-        list.setAdapter(dataAdapter);
         this.bouton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
