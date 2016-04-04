@@ -13,7 +13,8 @@ public class Produit {
 
     @Override
     public String toString() {
-        return nom + " " + quantiter.toString();
+        return nom + " "
+                + quantiter.toString();
     }
 
     public String getNom() {

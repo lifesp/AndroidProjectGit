@@ -78,10 +78,20 @@ public class FormFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        this.list = (Spinner) getView().findViewById(R.id.list);
-        this.nom = (EditText) getView().findViewById(R.id.nom);
-        this.quantiter = (EditText) getView().findViewById(R.id.quantiter);
-        this.bouton = (Button) getView().findViewById(R.id.button);
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_form, container, false);
+        this.nom = (EditText) v
+                .findViewById(R.id.nom);
+        this.list = (Spinner) v.findViewById(R.id.list);
+        this.quantiter = (EditText) v.findViewById(R.id.quantiter);
+        this.bouton = (Button) v.findViewById(R.id.button);
         List<String> categories = new ArrayList<String>();
         categories.add("Automobile");
         categories.add("Business Services");
@@ -93,26 +103,16 @@ public class FormFragment extends Fragment {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.CONTEXT, android.R.layout.simple_spinner_item, categories);
         bs = AddBase.getInstance(MainActivity.CONTEXT);
         list.setAdapter(dataAdapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                item = parent.getItemAtPosition(position).toString();
-            }
-        });
         this.bouton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Produit p = new Produit(nom.getText().toString(), Integer.getInteger(quantiter.getText().toString()), item);
+                System.out.println(nom.getText().toString());
+                System.out.println(Integer.valueOf(quantiter.getText().toString()));
+                Produit p = new Produit(nom.getText().toString(), Integer.valueOf(quantiter.getText().toString()), "test");
                 System.out.println(p.toString());
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_form, container, false);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
