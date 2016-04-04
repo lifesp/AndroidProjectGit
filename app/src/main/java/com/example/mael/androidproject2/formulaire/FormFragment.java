@@ -99,23 +99,6 @@ public class FormFragment extends Fragment {
         this.quantiter = (EditText) v.findViewById(R.id.quantiter);
         this.bouton = (Button) v.findViewById(R.id.button);
         List<String> categories = new ArrayList<String>();
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONGetter("adresseDuJson.json").execute().get();
-        } catch (MalformedURLException | ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        if (jsonObject != null)
-            try {
-                JSONArray jArray = jsonObject.getJSONObject("foods").getJSONArray("fgid");
-                for (int i = 0; i < jArray.length(); ++i) {
-                    JSONObject object = jArray.getJSONObject(i);
-                    categories.add(object.getString("food"));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         categories.add("Automobile");
         categories.add("Business Services");
         categories.add("Computers");
