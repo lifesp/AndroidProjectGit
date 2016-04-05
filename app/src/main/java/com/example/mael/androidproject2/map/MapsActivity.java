@@ -31,6 +31,7 @@ public class MapsActivity extends Fragment {
         if (container == null) {
             return null;
         }
+
         view = inflater.inflate(R.layout.activity_maps2, container, false);
         // Passing harcoded values for latitude & longitude. Please change as per your need. This is just used to drop a Marker on the Map
         latitude = 26.78;
