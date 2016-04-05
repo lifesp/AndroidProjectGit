@@ -27,11 +27,13 @@ public class AddBaseJSON {
         return instance;
     }
     private AddBaseJSON(Context context){
-        db = BaseDonneJSON.getBaseDonne(context).getWritableDatabase();
+        db = BaseDonneJSON
+                .getBaseDonne(context)
+                .getWritableDatabase();
         contentValues = new ContentValues();
     }
-    public void addProduit(Produit produit) {
-        contentValues.put(BaseDonneJSON.COLUMN_NAME, produit.getNom());
+    public void addProduit(String produit) {
+        contentValues.put(BaseDonneJSON.COLUMN_NAME, produit);
         long id = db.insert(BaseDonneJSON.DATABASE_TABLE, null, contentValues);
 
     }
