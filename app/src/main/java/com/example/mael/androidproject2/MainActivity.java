@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         AddBaseJSON BDJSON = AddBaseJSON.getInstance(CONTEXT);
         List<String> aliment = BDJSON.getProduit();
         for (String s: aliment) {
-            System.out.println(s);
+            System.out.println("ingredient : " +s);
         }
     }
 
@@ -86,10 +86,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
         if (jsonObject != null)
             try {
-                JSONArray jArray = jsonObject.getJSONObject("foods").getJSONArray("fgid");
+                JSONArray jArray = new JSONArray(jsonObject.getString("foods"));;
                 for (int i = 0; i < jArray.length(); ++i) {
-                    JSONObject object = jArray.getJSONObject(i);
-                    ad.addProduit(object.getString("food"));
+                    // On récupère un objet JSON du tableau
+                    JSONObject obj = new JSONObject(jArray.getString(i));
+                    ad.addProduit(obj.getString("food"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
