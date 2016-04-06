@@ -55,6 +55,7 @@ public class ItemListeFrigo extends Fragment {
         }
     }
 
+    private RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class ItemListeFrigo extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -73,7 +74,9 @@ public class ItemListeFrigo extends Fragment {
         }
         return view;
     }
+    public void miseAJour(){
 
+    }
 
     @Override
     public void onAttach(Context context) {

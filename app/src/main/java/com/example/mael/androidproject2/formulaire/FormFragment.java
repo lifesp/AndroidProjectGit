@@ -19,6 +19,9 @@ import com.example.mael.androidproject2.OnFragmentInteractionListener;
 import com.example.mael.androidproject2.R;
 import com.example.mael.androidproject2.formulaire.BaseDonne.AddBaseJSON;
 import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
+import com.example.mael.androidproject2.liste.ItemListeFrigo;
+import com.example.mael.androidproject2.liste.dummy.DummyContent;
+import com.example.mael.androidproject2.reseau.ItemReseau;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,6 +84,7 @@ public class FormFragment extends Fragment {
     private Button recherche;
     private ListView listType;
     private AddBaseJSON adJson;
+    private AddBase adBase;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +107,7 @@ public class FormFragment extends Fragment {
         this.type = (EditText) v.findViewById(R.id.type);
         this.quantiter = (EditText) v.findViewById(R.id.quantiter);
         this.bouton = (Button) v.findViewById(R.id.button);
+        adBase = AddBase.getInstance(MainActivity.CONTEXT);
         List<String> categories = new ArrayList<String>();
         adJson = AddBaseJSON.getInstance(MainActivity.CONTEXT);
         this.item = "Automobile";
@@ -113,7 +118,9 @@ public class FormFragment extends Fragment {
                 System.out.println(nom.getText().toString());
                 System.out.println(Integer.valueOf(quantiter.getText().toString()));
                 Produit p = new Produit(nom.getText().toString(), Integer.valueOf(quantiter.getText().toString()), "test");
+                adBase.addProduit(p);
                 System.out.println(p.toString());
+                DummyContent.miseAJour();
             }
         });
         this.recherche = (Button) v.findViewById(R.id.recherche);

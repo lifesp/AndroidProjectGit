@@ -33,16 +33,19 @@ public class DummyContent {
 
     static {
         // Add some sample items.
-        AddBase ad = AddBase.getInstance(MainActivity.CONTEXT);
-        List<Produit> lp= ad.getProduit();
-        for (int i = 1; i < lp.size(); i++) {
-            addItem(createDummyItem(i,lp.get(i)));
-        }
+        miseAJour();
     }
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
+    }
+    public static void miseAJour(){
+        AddBase ad = AddBase.getInstance(MainActivity.CONTEXT);
+        List<Produit> lp= ad.getProduit();
+        for (int i = 1; i < lp.size(); i++) {
+            addItem(createDummyItem(i,lp.get(i)));
+        }
     }
 
     private static DummyItem createDummyItem(Integer i, Produit produit) {
