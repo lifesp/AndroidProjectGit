@@ -39,9 +39,9 @@ public class AddBaseJSON {
     }
     public List<String> getProduit(){
         List<String> ps = new LinkedList<String>();
-        SQLiteDatabase db = BaseDonne.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
-        String [] allColumns = {BaseDonne.COLUMN_ID, 	BaseDonne.COLUMN_NAME} ;
-        Cursor cursor = db.query(BaseDonne.DATABASE_TABLE, allColumns, null, null, null, null, null);
+        SQLiteDatabase db = BaseDonneJSON.getBaseDonne(MainActivity.CONTEXT).getReadableDatabase() ;
+        String [] allColumns = {BaseDonneJSON.COLUMN_ID, 	BaseDonneJSON.COLUMN_NAME} ;
+        Cursor cursor = db.query(BaseDonneJSON.DATABASE_TABLE, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             ps.add(cursor.getString(1));
