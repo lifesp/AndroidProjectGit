@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         fragmentManager = getSupportFragmentManager();
         setContentView(R.layout.activity_main);
         Frags[0] = ItemReseau.newInstance(1);
-        Frags[1] = ItemListeFrigo.newInstance(1);
-        Frags[2] = new MapsActivity();
+        Frags[1] = new MapsActivity();
+        Frags[2] = ItemListeFrigo.newInstance(1);
         Frags[3] = FormFragment.newInstance("form", "form");
         balladesFragsPagerAdapter = new BalladesFragsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -54,6 +55,36 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         for (String s: aliment) {
             System.out.println("ingredient : " +s);
         }
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+                System.out.println(tab.getPosition());
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
+            }
+        };
+        actionBar.addTab(actionBar.newTab().setText("Reseau").setTabListener(tabListener));
+        actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
+        actionBar.addTab(actionBar.newTab().setText("Frigo").setTabListener(tabListener));
+        actionBar.addTab(actionBar.newTab().setText("Ajouter").setTabListener(tabListener));
+        mViewPager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {   // When swiping between pages, select the tab.
+                        getSupportActionBar().setSelectedNavigationItem(position);
+                    }
+                });
     }
 
     @Override

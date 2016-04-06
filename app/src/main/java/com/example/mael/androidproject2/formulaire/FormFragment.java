@@ -11,11 +11,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.mael.androidproject2.MainActivity;
 import com.example.mael.androidproject2.OnFragmentInteractionListener;
 import com.example.mael.androidproject2.R;
+import com.example.mael.androidproject2.formulaire.BaseDonne.AddBaseJSON;
 import com.example.mael.androidproject2.liste.BaseDonne.AddBase;
 
 import org.json.JSONArray;
@@ -70,12 +72,15 @@ public class FormFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    private Spinner list;
+    private EditText type;
     private EditText nom;
     private EditText quantiter;
     private Button bouton;
     private AddBase bs;
     private String item;
+    private Button recherche;
+    private ListView listType;
+    private AddBaseJSON adJson;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,16 +100,11 @@ public class FormFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_form, container, false);
         this.nom = (EditText) v
                 .findViewById(R.id.nom);
-        this.list = (Spinner) v.findViewById(R.id.list);
+        this.type = (EditText) v.findViewById(R.id.type);
         this.quantiter = (EditText) v.findViewById(R.id.quantiter);
         this.bouton = (Button) v.findViewById(R.id.button);
         List<String> categories = new ArrayList<String>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
+        adJson = AddBaseJSON.getInstance(MainActivity.CONTEXT);
         this.item = "Automobile";
         bs = AddBase.getInstance(MainActivity.CONTEXT);
         this.bouton.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +114,26 @@ public class FormFragment extends Fragment {
                 System.out.println(Integer.valueOf(quantiter.getText().toString()));
                 Produit p = new Produit(nom.getText().toString(), Integer.valueOf(quantiter.getText().toString()), "test");
                 System.out.println(p.toString());
+            }
+        });
+        this.recherche = (Button) v.findViewById(R.id.recherche);
+        this.listType = (ListView) v.findViewById(R.id.listType);
+        this.recherche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<String> lType = adJson.getProduit();
+                ArrayList<String> string = new ArrayList<String>();
+                String typeAliment = type.getText().toString();
+                int index = 0;
+                for(int i =0; i<lType.size(); ++i){
+                    //System.out.println(lType.get(i) + " / " +typeAliment+ " / "+lType.get(i).indexOf(typeAliment));
+                    if(lType.get(i).indexOf(typeAliment)>-1){
+                        string.add(lType.get(i));
+                        System.out.println(lType.get(i));
+                    }
+                }
+                ArrayAdapter<String> ad = new ArrayAdapter<String>(MainActivity.CONTEXT, android.R.layout.simple_expandable_list_item_1, string);
+                listType.setAdapter(ad);
             }
         });
         return v;

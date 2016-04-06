@@ -54,7 +54,6 @@ public class ItemReseau extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AddBase ad = AddBase.getInstance(MainActivity.CONTEXT);
-        ad.addProduit(new Produit("pizza", 5, "pizza"));
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }

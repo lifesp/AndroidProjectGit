@@ -94,8 +94,8 @@ public class MapsActivity extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         if (mMap != null) {
-            MainActivity.fragmentManager.beginTransaction()
-                    .remove(MainActivity.fragmentManager.findFragmentById(R.id.map)).commit();
+//            MainActivity.fragmentManager.beginTransaction()
+//                    .remove(MainActivity.fragmentManager.findFragmentById(R.id.map)).commit();
             mMap = null;
         }
     }
